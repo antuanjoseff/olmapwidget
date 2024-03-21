@@ -39,6 +39,7 @@ class GeometryTypeControl extends ol.control.Control {
 // TODO: allow deleting individual features (#8972)
 class MapWidget {
     constructor(options) {
+
         this.map = null;
         this.interactions = {draw: null, modify: null};
         this.typeChoices = false;
@@ -48,6 +49,7 @@ class MapWidget {
         this.options = {
             default_lat: 0,
             default_lon: 0,
+            base_layer: options.base_layer,
             default_zoom: 12,
             is_collection: options.geom_name.includes('Multi') || options.geom_name.includes('Collection')
         };
@@ -60,7 +62,7 @@ class MapWidget {
         }
         if (!options.base_layer) {
             this.options.base_layer = new ol.layer.Tile({source: new ol.source.OSM()});
-        }
+        }        
 
         // RemovedInDjango51Warning: when the deprecation ends, remove setting
         // width/height (3 lines below).
